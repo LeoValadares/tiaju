@@ -113,3 +113,4 @@ Na distribuição do CloudFront, aponte o **Default root object** para
   [este Short](https://www.youtube.com/shorts/ZtT1c9AWSDE); aqui ele toca na
   própria página.
 # tiaju
+# tiaju
