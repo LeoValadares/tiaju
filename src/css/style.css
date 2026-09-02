@@ -1,0 +1,253 @@
+/* Tia Ju 10 123 — campanha 2026
+   Layout traced from the original Canva design: a 1080x1920 canvas.
+   Every measurement below is kept in those canvas units and scaled by --u,
+   so the numbers match the source design 1:1. */
+
+:root {
+  --roxo: #4f1f76;
+  --faixa-azul: #0471b4;
+  --faixa-lilas: #815fa5;
+  --faixa-magenta: #9d489b;
+  --faixa-rosa: #ee93b7;
+
+  --btn-ciano: linear-gradient(135deg, #73fcff, #00bec2);
+  --btn-roxo: linear-gradient(135deg, #9369ff, #5731a6);
+  --btn-rosa: linear-gradient(135deg, #ff9ed6, #cf339c);
+  --btn-laranja: linear-gradient(135deg, #ffa176, #c05100);
+
+  --texto-claro: #fdfdfd;
+  --texto-escuro: #002060;
+  --link-ciano: #00e6ee;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--roxo);
+}
+
+body {
+  /* --w: largura da coluna de conteudo. --u: 1 unidade do canvas original.
+     Usa dvw (nao %) porque uma porcentagem dentro de uma custom property so
+     e resolvida no ponto de uso — em `height` ela viraria 100% da altura.
+     Alem da largura, a coluna e limitada pela altura (proporcao 1080/1920 do
+     canvas) para que a pagina caiba em uma tela so, como no design original. */
+  --w: max(300px, min(100dvw - 2rem, 520px, (100dvh - 2rem) * 0.5625));
+  --u: calc(var(--w) / 1080);
+
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--roxo);
+  color: #fff;
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Flor decorativa: fixa, centrada na coluna e sangrando para o fundo roxo. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url("../assets/img/flor.png") no-repeat;
+  background-size: calc(2501 * var(--u)) auto;
+  background-position: calc(50% + 269 * var(--u)) calc(50% - 41 * var(--u));
+  pointer-events: none;
+}
+
+/* Faixa de cores no rodape, sangrando de ponta a ponta. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 2;
+  height: max(6px, calc(36.5 * var(--u)));
+  background: linear-gradient(
+    90deg,
+    var(--faixa-azul) 0 25%,
+    var(--faixa-lilas) 0 50%,
+    var(--faixa-magenta) 0 75%,
+    var(--faixa-rosa) 0
+  );
+}
+
+/* ---------- palco ---------- */
+
+.palco {
+  position: relative;
+  z-index: 1;
+  width: var(--w);
+  margin-inline: auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(108 * var(--u));
+}
+
+.logo {
+  display: block;
+  width: calc(505.2 * var(--u));
+  margin: calc(22.9 * var(--u)) auto 0;
+  height: auto;
+}
+
+/* ---------- midia ---------- */
+
+.midia {
+  position: relative;
+  width: calc(747.5 * var(--u));
+  margin: calc(-31 * var(--u)) auto 0;
+}
+
+/* A simulacao de voto e um pouco menor no design original. */
+.midia--voto {
+  width: calc(713.5 * var(--u));
+  margin-top: calc(-28.1 * var(--u));
+}
+
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: #000;
+  border: 0;
+}
+
+/* O autoplay so e permitido sem som, entao oferecemos um atalho para ligar.
+   Fica escondido ate o video comecar a tocar de fato (ver js/video.js). */
+.som {
+  position: absolute;
+  top: calc(24 * var(--u));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0.5em 1em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--btn-ciano);
+  color: var(--texto-escuro);
+  font-family: Oswald, "Arial Narrow", sans-serif;
+  font-size: max(11px, calc(30 * var(--u)));
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 calc(4 * var(--u)) calc(12 * var(--u)) rgb(0 0 0 / 0.35);
+}
+
+.som[hidden] {
+  display: none;
+}
+
+.som svg {
+  width: 1.1em;
+  height: 1.1em;
+  fill: currentColor;
+}
+
+/* ---------- texto ---------- */
+
+.texto {
+  width: calc(943.6 * var(--u));
+  margin: calc(48.6 * var(--u)) auto 0;
+  font-size: calc(43.2491 * var(--u));
+  line-height: calc(60 / 43.2491);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* No original os paragrafos formam um bloco continuo, sem espaco entre eles. */
+.texto p {
+  margin: 0;
+}
+
+.texto a {
+  color: var(--link-ciano);
+  text-decoration: underline;
+}
+
+/* ---------- botoes ---------- */
+
+.acoes {
+  margin-top: auto;
+  padding-top: calc(59 * var(--u));
+  display: flex;
+  gap: calc(21 * var(--u));
+  padding-inline: calc(32 * var(--u));
+}
+
+.botao {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  height: calc(83.8 * var(--u));
+  padding-inline: calc(8 * var(--u));
+  border-radius: 999px;
+  font-family: Oswald, "Arial Narrow", sans-serif;
+  font-size: max(11px, calc(32 * var(--u)));
+  font-weight: 700;
+  line-height: 1.375;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  white-space: nowrap;
+  color: var(--texto-claro);
+  box-shadow: 0 calc(4 * var(--u)) calc(12 * var(--u)) rgb(0 0 0 / 0.28);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.botao:hover,
+.botao:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.botao:active {
+  transform: translateY(0);
+}
+
+.botao--ciano {
+  background: var(--btn-ciano);
+  color: var(--texto-escuro);
+}
+.botao--roxo {
+  background: var(--btn-roxo);
+}
+.botao--rosa {
+  background: var(--btn-rosa);
+}
+.botao--laranja {
+  background: var(--btn-laranja);
+}
+
+/* Em telas estreitas os tres botoes lado a lado ficam ilegiveis: empilha. */
+@media (max-width: 480px) {
+  .acoes {
+    flex-direction: column;
+    gap: calc(26 * var(--u));
+    padding-inline: calc(60 * var(--u));
+  }
+
+  .botao {
+    height: calc(104 * var(--u));
+    font-size: max(14px, calc(40 * var(--u)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botao {
+    transition: none;
+  }
+  .botao:hover,
+  .botao:focus-visible {
+    transform: none;
+  }
+}

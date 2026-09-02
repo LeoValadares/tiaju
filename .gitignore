@@ -1,0 +1,7 @@
+node_modules/
+.playwright-mcp/
+*.log
+
+# Zip com os assets originais (25 MB) — o conteudo ja esta extraido em assets/.
+# Fora do git para nao inchar o historico; guarde uma copia em outro lugar.
+assets/*.zip
