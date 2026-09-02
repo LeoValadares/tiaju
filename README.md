@@ -14,7 +14,7 @@ npm start          # live-server em src/, com reload automático
 ## Estrutura
 
 ```
-src/
+src/                              tudo que vai para o ar
 ├── index.html                    Tia Ju se apresenta (vídeo)
 ├── conheca.html                  Conheça a Tia Ju (texto)
 ├── vote.html                     Vote 10 123 (simulação de voto)
@@ -23,7 +23,15 @@ src/
 └── assets/
     ├── img/   logo, flor de fundo, posters dos vídeos
     └── video/ apresentacao.mp4, simulacao-voto.mp4
+
+assets/                           material de design, não publicado
+├── LAYOUT/                       mockups das páginas em 1080×1920
+├── BOTOES_REDES/                 ícones de redes (não usados no site)
+└── PNGs/FAIXAS_01.png            faixa do rodapé (feita em CSS no site)
 ```
+
+Só `src/` é publicado. A pasta `assets/` guarda o material de origem — veja
+[`assets/README.md`](assets/README.md) para o que é cada coisa.
 
 ## Como o layout funciona
 
