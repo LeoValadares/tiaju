@@ -41,14 +41,27 @@ O design original é um canvas de **1080×1920** (formato story). O CSS mantém
 todas as medidas nessas unidades e escala tudo com uma variável:
 
 ```css
---w: max(300px, min(100dvw - 2rem, 520px, (100dvh - 2rem) * 0.5625));
+--w: max(300px, min(100dvw - 1rem, 560px, (100dvh - 1rem) * 0.5625));
 --u: calc(var(--w) / 1080);   /* 1 unidade do canvas original */
 
 .logo { width: calc(505.2 * var(--u)); }
 ```
 
 Assim os números no CSS são os mesmos do design, e a página inteira escala junto
-— cabendo em uma tela só, sem letterbox. Abaixo de 480px os três botões empilham.
+— cabendo em uma tela só, sem letterbox. Abaixo de 480px os três botões empilham;
+em telas baixas (≤640px de altura) eles encolhem para não passar da dobra.
+
+O orçamento vertical das 1920 unidades é usado inteiro, sem sobra:
+
+```
+  logo     0 ..  331     a logo cobre os 121 primeiros pixels do vídeo
+  vídeo  210 .. 1718     848 de largura (9:16)
+  botões 1758 .. 1878    120 de altura
+  folga  1878 .. 1920
+```
+
+Mexer em qualquer um desses números exige refazer a conta — se a soma passar de
+1920, a coluna encolhe (a altura vira o limite de `--w`) e tudo fica menor.
 
 Duas coisas a saber ao mexer no CSS:
 
