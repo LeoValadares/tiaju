@@ -18,11 +18,13 @@ src/                              tudo que vai para o ar
 ├── index.html                    Tia Ju se apresenta (vídeo)
 ├── conheca.html                  Conheça a Tia Ju (texto)
 ├── vote.html                     Vote 10 123 (simulação de voto)
+├── redes.html                    Nossas redes (links das redes sociais)
 ├── css/style.css
 ├── js/video.js                   autoplay + botão de som
 └── assets/
-    ├── img/   logo, flor de fundo, posters dos vídeos
-    └── video/ apresentacao.mp4, simulacao-voto.mp4
+    ├── img/       logo, flor de fundo, posters, foto recortada
+    ├── img/redes/ ícones das redes sociais
+    └── video/     apresentacao.mp4, simulacao-voto.mp4
 
 assets/                           material de design, não publicado
 ├── LAYOUT/                       mockups das páginas em 1080×1920
@@ -71,6 +73,33 @@ Como autoplay implica baixar o vídeo, os arquivos pesam no primeiro acesso
 ```bash
 ffmpeg -i entrada.mp4 -vf scale=720:-2 -c:v libx264 -crf 28 -c:a aac -b:a 96k saida.mp4
 ```
+
+## Redes sociais
+
+`redes.html` substitui o link para o Linktree: os perfis aparecem direto na
+página, cada ícone clicável. O layout segue
+`assets/LAYOUT/NOSSAS REDES.png` — posições e tamanhos nas mesmas coordenadas
+do canvas 1080×1920.
+
+| Rede | Perfil | Link |
+| --- | --- | --- |
+| Site | tiaju10.com.br | https://tiaju10.com.br |
+| Facebook | @tiaju10 | https://www.facebook.com/tiaju10/ |
+| Instagram | @tiaju10 | https://www.instagram.com/tiaju10 |
+| TikTok | @tiaju_10 | https://www.tiktok.com/@tiaju_10 |
+| YouTube | @tiaju1028 | https://www.youtube.com/@tiaju1028 |
+
+Os endereços vieram do próprio Linktree da campanha. Duas diferenças em
+relação ao mockup:
+
+- O mockup escreve **www.tiaju.com.br**, que não resolve. O domínio no ar é
+  `tiaju10.com.br`, e é ele que está no link.
+- O Linktree também tem canal no WhatsApp e a vaquinha
+  (`queroapoiar.com.br/tiaju`). Não estão no mockup, então ficaram de fora.
+
+A foto da Tia Ju (`assets/img/tiaju.webp`) foi recortada do mockup por
+flood-fill do fundo roxo. No original ela terminava atrás dos botões, então o
+pé da imagem é dissolvido com `mask-image` para o corte reto não aparecer.
 
 ## Fontes
 

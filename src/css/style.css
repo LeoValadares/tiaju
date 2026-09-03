@@ -173,6 +173,74 @@ body::after {
   text-decoration: underline;
 }
 
+/* ---------- redes sociais ---------- */
+
+/* Grade irregular do layout de referencia: tres colunas em cima, depois
+   TikTok e YouTube empilhados a esquerda com a foto ocupando a direita.
+   As coordenadas sao as do canvas 1080x1920, com origem em y=448. */
+.redes {
+  position: relative;
+  width: 100%;
+  height: calc(976 * var(--u));
+  margin-top: calc(94 * var(--u));
+}
+
+/* A foto foi recortada do layout de referencia, onde ela terminava atras da
+   linha de botoes. O corte reto no pe fica visivel aqui, entao dissolvemos a
+   base num degrade em vez de cortar seco. */
+.redes__foto {
+  position: absolute;
+  left: calc(420 * var(--u));
+  top: calc(321 * var(--u));
+  width: calc(660 * var(--u));
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 97%);
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 97%);
+}
+
+.rede {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(38 * var(--u));
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.15s ease;
+}
+
+.rede img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rede span {
+  font-size: calc(40.5 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 calc(2 * var(--u)) calc(8 * var(--u)) rgb(0 0 0 / 0.45);
+}
+
+.rede:hover,
+.rede:focus-visible {
+  transform: translateY(calc(-6 * var(--u)));
+}
+
+/* Cada rede na posicao exata do layout. */
+.rede--www     { left: calc(198 * var(--u)); top: 0; width: calc(184 * var(--u)); }
+.rede--face    { left: calc(534 * var(--u)); top: 0; width: calc(185 * var(--u)); }
+.rede--insta   { left: calc(770 * var(--u)); top: 0; width: calc(185 * var(--u)); }
+.rede--tiktok  { left: calc(192 * var(--u)); top: calc(374 * var(--u)); width: calc(185 * var(--u)); }
+.rede--youtube { left: calc(195 * var(--u)); top: calc(730 * var(--u)); width: calc(194 * var(--u)); }
+
+/* O icone do YouTube e mais baixo (194x136); compensa para o rotulo cair
+   na mesma altura do layout de referencia. */
+.rede--youtube { gap: calc(70 * var(--u)); }
+
 /* ---------- botoes ---------- */
 
 .acoes {
