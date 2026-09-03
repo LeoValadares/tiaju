@@ -86,14 +86,17 @@ body::after {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(42 * var(--u));
+  /* A faixa do rodape e fixa e tem 36.5 de altura, entao o respiro real
+     entre o ultimo botao e ela e (107 - 36.5) = ~70 unidades. */
+  padding-bottom: calc(107 * var(--u));
 }
 
-/* Orcamento vertical do canvas (1920 unidades), sem sobra:
+/* Orcamento vertical do canvas (1920 unidades):
      logo    0 .. 331
-     video   210 .. 1718   (a logo cobre os 121 primeiros)
-     botoes  1758 .. 1878
-     folga   42            */
+     video   210 .. 1696   (a logo cobre os 121 primeiros)
+     botoes  1726 .. 1846
+     respiro 1846 .. 1883
+     faixa   1883 .. 1920  */
 .logo {
   display: block;
   position: relative;
@@ -107,7 +110,7 @@ body::after {
 
 .midia {
   position: relative;
-  width: calc(848 * var(--u));
+  width: calc(836 * var(--u));
   margin: calc(-121 * var(--u)) auto 0;
 }
 
@@ -251,7 +254,7 @@ body::after {
 
 .acoes {
   margin-top: auto;
-  padding-top: calc(40 * var(--u));
+  padding-top: calc(30 * var(--u));
   display: flex;
   gap: calc(21 * var(--u));
   padding-inline: calc(32 * var(--u));
@@ -320,6 +323,11 @@ body::after {
 /* Em telas baixas (iPhone SE e afins) tres botoes empilhados nessa altura
    passariam da dobra; encolhe o suficiente para tudo caber sem rolagem. */
 @media (max-width: 480px) and (max-height: 640px) {
+  /* Respiro menor ate a faixa (64 - 36.5 = ~28) para nao gerar rolagem. */
+  .palco {
+    padding-bottom: calc(64 * var(--u));
+  }
+
   .acoes {
     gap: calc(18 * var(--u));
   }

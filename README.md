@@ -54,14 +54,26 @@ em telas baixas (≤640px de altura) eles encolhem para não passar da dobra.
 O orçamento vertical das 1920 unidades é usado inteiro, sem sobra:
 
 ```
-  logo     0 ..  331     a logo cobre os 121 primeiros pixels do vídeo
-  vídeo  210 .. 1718     848 de largura (9:16)
-  botões 1758 .. 1878    120 de altura
-  folga  1878 .. 1920
+  logo      0 ..  331    a logo cobre os 121 primeiros pixels do vídeo
+  vídeo   210 .. 1696    836 de largura (9:16)
+  botões 1726 .. 1846    120 de altura
+  respiro 1846 .. 1883
+  faixa  1883 .. 1920    fixa no rodapé
 ```
 
 Mexer em qualquer um desses números exige refazer a conta — se a soma passar de
 1920, a coluna encolhe (a altura vira o limite de `--w`) e tudo fica menor.
+
+O respiro entre o último botão e a faixa não é uma margem própria: como a faixa
+é `position: fixed`, ele é o `padding-bottom` do `.palco` **menos** a altura da
+faixa (107 − 36.5 ≈ 70). Para mudar o respiro, mexa nesse padding.
+
+## Ordem dos botões
+
+Cada página mostra as outras três como botão, e **"ACESSE NOSSAS REDES" é sempre
+o último** — o mais à direita na linha, o de baixo quando empilham. A ordem vem
+do HTML; não há `order` no CSS, então é só manter o `botao--ciano` por último no
+`<nav class="acoes">`.
 
 Duas coisas a saber ao mexer no CSS:
 
