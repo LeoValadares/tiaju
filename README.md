@@ -54,12 +54,21 @@ em telas baixas (≤640px de altura) eles encolhem para não passar da dobra.
 O orçamento vertical das 1920 unidades é usado inteiro, sem sobra:
 
 ```
-  logo      0 ..  331    a logo cobre os 121 primeiros pixels do vídeo
-  vídeo   210 .. 1696    836 de largura (9:16)
-  botões 1726 .. 1846    120 de altura
-  respiro 1846 .. 1883
+  logo      0 ..  301    a logo cobre os 60 primeiros pixels do vídeo
+  vídeo   241 .. 1681    810 de largura (9:16)
+  botões 1705 .. 1845    140 de altura
+  respiro 1845 .. 1883
   faixa  1883 .. 1920    fixa no rodapé
 ```
+
+Abaixo de 480px os botões empilham e o conteúdo passa de ~1920 para ~2314
+unidades de altura. Por isso o `--w` do celular usa `1080/2314 = 0.463` no lugar
+de `0.5625` — sem isso a página rola em telas baixas (era o caso do iPhone SE,
+375×667). **Se mexer na altura dos botões empilhados, refaça esse fator.**
+
+A fonte dos botões é limitada pela largura da pílula, não pela altura: em 33
+unidades o rótulo mais longo ("ACESSE NOSSAS REDES") ocupa 309 de 325. Aumentar
+mais estoura o texto para fora.
 
 Mexer em qualquer um desses números exige refazer a conta — se a soma passar de
 1920, a coluna encolhe (a altura vira o limite de `--w`) e tudo fica menor.
